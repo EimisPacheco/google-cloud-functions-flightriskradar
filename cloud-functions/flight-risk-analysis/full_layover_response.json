@@ -1,0 +1,4 @@
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  1170  100   488  100   682   5382   7522 --:--:-- --:--:-- --:--:-- 13000
+{"success": false, "orchestrator": {"intent": "extension_flight_analysis", "reasoning": "Chrome Extension flight analysis"}, "flight_data": {}, "risk_analysis": {}, "weather_analysis": {}, "insurance_recommendation": {}, "analysis_metadata": {}, "error": "Missing required flight information from Google Flights", "timestamp": "2025-07-29T22:10:49.957806+00:00", "adk_status": {"framework": "Google ADK", "model": "gemini-2.0-flash", "unified_routing": true, "standardized_agents": true}}

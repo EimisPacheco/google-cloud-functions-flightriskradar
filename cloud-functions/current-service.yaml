@@ -1,0 +1,71 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  annotations:
+    cloudfunctions.googleapis.com/function-id: flight-risk-analysis
+    run.googleapis.com/build-base-image: us-central1-docker.pkg.dev/serverless-runtimes/google-22-full/runtimes/python311
+    run.googleapis.com/build-enable-automatic-updates: 'true'
+    run.googleapis.com/build-function-target: analyze_flight_risk
+    run.googleapis.com/build-image-uri: us-central1-docker.pkg.dev/crafty-cairn-469222-a8/gcf-artifacts/argon--acumen--268900__us--central1__flight--risk--analysis:version_1
+    run.googleapis.com/build-name: projects/930758909188/locations/us-central1/builds/4819a506-964c-45fc-8b00-793089284fb4
+    run.googleapis.com/build-service-account: projects/crafty-cairn-469222-a8/serviceAccounts/930758909188-compute@developer.gserviceaccount.com
+    run.googleapis.com/build-source-location: gs://gcf-v2-sources-930758909188-us-central1/flight-risk-analysis/function-source.zip#1752702832960062
+    run.googleapis.com/custom-audiences: '["https://us-central1-crafty-cairn-469222-a8.cloudfunctions.net/flight-risk-analysis"]'
+    run.googleapis.com/ingress: all
+    run.googleapis.com/ingress-status: all
+    run.googleapis.com/urls: '["https://flight-risk-analysis-930758909188.us-central1.run.app","https://us-central1-crafty-cairn-469222-a8.cloudfunctions.net/flight-risk-analysis","https://flight-risk-analysis-pppgnpgaqq-uc.a.run.app"]'
+  labels:
+    cloud.googleapis.com/location: us-central1
+    goog-cloudfunctions-runtime: python311
+    goog-drz-cloudfunctions-id: flight-risk-analysis
+    goog-drz-cloudfunctions-location: us-central1
+    goog-managed-by: cloudfunctions
+  name: flight-risk-analysis
+  namespace: '930758909188'
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/maxScale: '60'
+        cloudfunctions.googleapis.com/trigger-type: HTTP_TRIGGER
+        run.googleapis.com/base-images: '{"worker":"us-central1-docker.pkg.dev/serverless-runtimes/google-22-full/runtimes/python311"}'
+        run.googleapis.com/client-name: cloud-console
+        run.googleapis.com/startup-cpu-boost: 'true'
+      labels:
+        goog-drz-cloudfunctions-id: flight-risk-analysis
+        goog-drz-cloudfunctions-location: us-central1
+        run.googleapis.com/startupProbeType: Default
+      name: flight-risk-analysis-00228-fax
+    spec:
+      containerConcurrency: 1
+      containers:
+      - env:
+        - name: GOOGLE_API_KEY
+          value: AIzaSyD3VOx_ekHUaGva23HBl5f5J0112kf7U6s
+        - name: GOOGLE_CLOUD_PROJECT
+          value: crafty-cairn-469222-a8
+        - name: SERPAPI_API_KEY
+          value: 08310a27533961506cab3eac0bc4709ab1d0760eb8d3b7c2936b2853fc504126
+        - name: LOG_EXECUTION_ID
+          value: 'true'
+        image: us-central1-docker.pkg.dev/crafty-cairn-469222-a8/gcf-artifacts/argon--acumen--268900__us--central1__flight--risk--analysis:version_1
+        name: worker
+        ports:
+        - containerPort: 8080
+          name: http1
+        resources:
+          limits:
+            cpu: '1'
+            memory: 2G
+        startupProbe:
+          failureThreshold: 1
+          periodSeconds: 240
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 240
+      runtimeClassName: run.googleapis.com/linux-base-image-update
+      serviceAccountName: 930758909188-compute@developer.gserviceaccount.com
+      timeoutSeconds: 540
+  traffic:
+  - latestRevision: true
+    percent: 100

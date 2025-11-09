@@ -1,0 +1,8 @@
+functions-framework==3.*
+google-cloud-bigquery>=3.0.0
+google-generativeai>=0.3.2
+requests>=2.31.0
+python-dotenv>=1.0.0
+google-adk
+pandas>=1.5.0
+elasticsearch>=8.0.0

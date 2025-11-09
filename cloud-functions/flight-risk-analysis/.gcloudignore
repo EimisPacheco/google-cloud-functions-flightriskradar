@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.git/
+.gitignore
+README.md
+*.backup
+*.bak
+*.disabled
+*.broken
+.DS_Store
+*.log 
